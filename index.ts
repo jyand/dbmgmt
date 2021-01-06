@@ -1,19 +1,20 @@
 // HTML elements whose sub-elements are changed
-const m = document.getElementById("main") ;
-const t = document.getElementById("top") ;
-const ins = document.getElementById("insert") ;
-const cre = document.getElementById("create") ;
+var m = document.getElementById("main") ;
+var t = document.getElementById("top").innerHTML ;
+var ins = document.getElementById("insert") ;
+var cre = document.getElementById("create") ;
 
 // textbox for the table name
 function InsertInto(e): void {
         m.innerHTML = '<form id="table"><label for="tableName">Table Name:<input type="text" id="tableName" name="tableName"></form></br>' ;
         m.innerHTML += '<form id="fields"><label for="field0">Fields:<input type="text" id="field0" name="field0"></form></br>' ;
-        t.innerHTML = "INSERT INTO" ;
+        t = "INSERT INTO " ;
+        document.getElementById("tableName").addEventListener("keyup", ShowTableName) ;
 }
 // try appendChildNode or whatever
 // or maybe forms[][]
 function ShowTableName(e): void {
-        t.innerHTML += document.getElementById("tableName").textContent + "VALUES" ;
+        t += document.getElementById("tableName").textContent ;
 }
 
 // textboxes for inserting data into existing tables
@@ -22,5 +23,4 @@ function ShowTableName(e): void {
         }
 }*/
 
-m.addEventListener("keyup", ShowTableName) ;
 ins.addEventListener("click", InsertInto) ;
