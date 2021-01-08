@@ -1,4 +1,3 @@
-//TODO: just have one incrementer so fields and values entered are guaranteed same length, clean up UI a little
 var m = document.getElementById("main") ;
 var ins = document.getElementById("insert") ;
 
@@ -23,22 +22,22 @@ function IncrementInput(): void {
 function StringFromInput(id: string): string {
         let f = document.forms[id] ;
         let N: number = f.length ;
-        let str: string = "(" ;
+        let s: string = "(" ;
         for (let i: number = 0 ; i < N ; ++i) {
-                str += f[`${id}${i}`].value ;
+                s += f[`${id}${i}`].value ;
                 if (i === N - 1) {
-                        str += ")" ;
+                        s += ")" ;
                 } else {
-                        str += ", " ;
+                        s += ", " ;
                 }
         }
         if (id === "field") {
-                str += " VALUES" ;
+                s += " VALUES" ;
         }
         if (id === "value") {
-                str += " ;" ;
+                s += " ;" ;
         }
-        return str ;
+        return s ;
 }
 
 function Main(e): void {
@@ -47,14 +46,14 @@ function Main(e): void {
         m.innerHTML += '<p>Values:</p><form id="value"><label for="value0"><input type="text" id="value0" name="value0"></form></br>' ;
         m.innerHTML += '<p>Inputs:</p><form id="inputs"><label for="numinputs"><input type="number" id="numinputs" name="numinputs" value="1"></form></br>' ;
         document.getElementById("table").addEventListener("keyup", function(): void {
-                let str: string = document.forms["table"]["tableName"].value ;
-                document.getElementById("tbl").textContent = "INSERT INTO " + str ;
+                let s: string = document.forms["table"]["tableName"].value ;
+                document.getElementById("top0").textContent = `INSERT INTO ${s}` ;
         }) ;
         document.getElementById("field").addEventListener("keyup", function(): void {
-                document.getElementById("fld").textContent = StringFromInput("field") ;
+                document.getElementById("top1").textContent = StringFromInput("field") ;
         }) ;
         document.getElementById("value").addEventListener("keyup", function(): void {
-                document.getElementById("val").textContent = StringFromInput("value") ;
+                document.getElementById("top2").textContent = StringFromInput("value") ;
         }) ;
         document.getElementById("inputs").addEventListener("keyup", function(): void {
                 FixInput() ;
