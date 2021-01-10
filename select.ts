@@ -15,7 +15,7 @@ function StringFromCriteria(): string {
         var crt = document.forms["criteria"] ;
         var op = crt["ops"].value ;
         var cnd = crt["condition0"].value ;
-        let s: string = crt["criteria0"].value ;
+        let s: string = `WHERE ${crt["criteria0"].value}` ;
         if (op == "(search)") {
                 s += ` LIKE '%${cnd}%' ` ;
         } else {
@@ -41,7 +41,7 @@ function Main(e): void {
                 document.getElementById("top2").textContent = StringFromCriteria() + " ;" ;
         }) ;
         document.getElementById("criteria").addEventListener("click", function(): void {
-                document.getElementById("top2").textContent = ` WHERE ${StringFromCriteria()} ;` ;
+                document.getElementById("top2").textContent = `${StringFromCriteria()} ;` ;
         }) ;
 }
 
