@@ -24,7 +24,12 @@ function StringFromInput(id: string): string {
         let N: number = f.length ;
         let s: string = "(" ;
         for (let i: number = 0 ; i < N ; ++i) {
-                s += f[`${id}${i}`].value ;
+                let v = f[`${id}${i}`].value ;
+                if (id == "value" && isNaN(v)) {
+                        s += `'${v}'` ;
+                } else {
+                        s += v ;
+                }
                 if (i === N - 1) {
                         s += ")" ;
                 } else {
