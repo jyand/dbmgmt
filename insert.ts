@@ -49,10 +49,10 @@ function Main(e): void {
         for (let i: number = 0 ; i < 3 ; ++i) {
                 document.getElementById(`top${i}`).textContent = "" ;
         }
-        m.innerHTML = '<form id="table"><label for="tableName"><p>Table:</p><input type="text" id="tableName" name="tableName"></form></br>' ;
-        m.innerHTML += '<p>Fields:</p><form id="field"><label for="field0"><input type="text" id="field0" name="field0"></form></br>' ;
-        m.innerHTML += '<p>Values:</p><form id="value"><label for="value0"><input type="text" id="value0" name="value0"></form></br>' ;
-        m.innerHTML += '<p>Inputs:</p><form id="inputs"><label for="numinputs"><input type="number" id="numinputs" name="numinputs" value="1"></form></br>' ;
+        m.innerHTML = '<form id="table" action="/processform" method="POST"><label for="tableName"><p>Table:</p><input type="text" id="tableName" name="tableName"></form></br>' ;
+        m.innerHTML += '<p>Fields:</p><form id="field" action="/processform" method="POST"><label for="field0"><input type="text" id="field0" name="field0"></form></br>' ;
+        m.innerHTML += '<p>Values:</p><form id="value" action="/processform" method="POST"><label for="value0"><input type="text" id="value0" name="value0"></form></br>' ;
+        m.innerHTML += '<p>Inputs:</p><form id="inputs" action="/processform" method="POST"><label for="numinputs"><input type="number" id="numinputs" name="numinputs" value="1"></form></br>' ;
         document.getElementById("table").addEventListener("keyup", function(): void {
                 let s: string = document.forms["table"]["tableName"].value ;
                 document.getElementById("top0").textContent = `INSERT INTO ${s}` ;
