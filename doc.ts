@@ -5,8 +5,9 @@ export function Id(s: string): HTMLElement | null {
         return document.getElementById(s) ;
 }
 
-export let Listen = (id: HTMLElement, ev: string, func: EventListener): void =>
-        id.addEventListener(ev, func) ;
+export function Listen (e, func: EventListener): void {
+        addEventListener(e, func) ;
+}
 
 export function Tags(s: string): HTMLCollectionOf<Element> | null {
         return document.getElementsByTagName(s) ;
@@ -17,7 +18,7 @@ export function Form(input: string): string | number | boolean {
 }
 
 // for efficiently generating HTML in the page
-class InputElement {
+export class InputElement {
         inputType: string ;
         inputId: string ;
         value: string | null ; 

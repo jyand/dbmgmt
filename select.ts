@@ -1,5 +1,6 @@
+import * as d from './doc' ;
+
 var m = document.getElementById("main") ;
-var sel = document.getElementById("select") ;
 
 function OperatorOptions(): string {
         const ops: string[] = ["(search)", "=", "!=", "<", ">", "<=", ">="] ;
@@ -30,6 +31,7 @@ function StringFromCriteria(): string {
 }
 
 function Main(e): void {
+//d.Listen(d.Id("select"), "click", function Main(e): void {
         m.innerHTML = '<form id="table" action="/processform" method="GET"><label for="tableName"><p>Table:</p><input type="text" id="tableName" name="tableName"></form></br>' ;
         m.innerHTML += '<p>Criteria:</p><form id="criteria" action="/processform" method="GET"><label for="criteria0"><input type="text" id="criteria0" name="criteria0">' + OperatorOptions() + '<label for="condition0"><input type="text" id="condition0" name="condition0"></form>' ;
         document.getElementById("top0").textContent = `SELECT *` ;
@@ -45,4 +47,6 @@ function Main(e): void {
         }) ;
 }
 
+var sel: HTMLElement = d.Id("select") ;
 sel.addEventListener("click", Main) ;
+//sel.addEventListener("click", Main) ;

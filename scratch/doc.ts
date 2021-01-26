@@ -18,7 +18,7 @@ export function Form(input: string): string | number | boolean {
 }
 
 // for efficiently generating HTML in the page
-class InputElement {
+export class InputElement {
         inputType: string ;
         inputId: string ;
         value: string | null ; 
