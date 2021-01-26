@@ -1,6 +1,7 @@
-import * as d from './doc' ;
+import * as d from './doc.js' ;
 
-var m = document.getElementById("main") ;
+var sel: HTMLElement = d.Id("select") ;
+var m: HTMLElement = d.Id("main") ;
 
 function OperatorOptions(): string {
         const ops: string[] = ["(search)", "=", "!=", "<", ">", "<=", ">="] ;
@@ -35,7 +36,7 @@ function Main(e): void {
         m.innerHTML = '<form id="table" action="/processform" method="GET"><label for="tableName"><p>Table:</p><input type="text" id="tableName" name="tableName"></form></br>' ;
         m.innerHTML += '<p>Criteria:</p><form id="criteria" action="/processform" method="GET"><label for="criteria0"><input type="text" id="criteria0" name="criteria0">' + OperatorOptions() + '<label for="condition0"><input type="text" id="condition0" name="condition0"></form>' ;
         document.getElementById("top0").textContent = `SELECT *` ;
-        document.getElementById("table").addEventListener("keyup", function(): void {
+        d.Listen("table", "keyup", function(): void {
                 let s: string = document.forms["table"]["tableName"].value ;
                 document.getElementById("top1").textContent = `FROM ${s}` ;
         }) ;
@@ -47,6 +48,4 @@ function Main(e): void {
         }) ;
 }
 
-var sel: HTMLElement = d.Id("select") ;
 sel.addEventListener("click", Main) ;
-//sel.addEventListener("click", Main) ;

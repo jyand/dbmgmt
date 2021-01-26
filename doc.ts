@@ -5,8 +5,8 @@ export function Id(s: string): HTMLElement | null {
         return document.getElementById(s) ;
 }
 
-export function Listen (e, func: EventListener): void {
-        addEventListener(e, func) ;
+export function Listen (s: string, e, func: EventListener): void {
+        document.getElementById(s),addEventListener(e, func) ;
 }
 
 export function Tags(s: string): HTMLCollectionOf<Element> | null {

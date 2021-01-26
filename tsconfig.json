@@ -6,6 +6,7 @@
         },
         "files": [
                 "doc.ts",
-                "select.ts"
+                "select.ts",
+                "insert.ts"
         ]
 }

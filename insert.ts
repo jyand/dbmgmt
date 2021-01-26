@@ -1,5 +1,7 @@
-var m = document.getElementById("main") ;
-var ins = document.getElementById("insert") ;
+import * as d from './doc.js' ;
+
+var m: HTMLElement = d.Id("main") ;
+var ins: HTMLElement = d.Id("insert") ;
 
 function FixInput(): void {
         let n: number = document.forms["inputs"]["numinputs"].value ;

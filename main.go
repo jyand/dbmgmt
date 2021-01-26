@@ -1,7 +1,7 @@
 /* processing html form data the way one would with $_POST[] or $GET[] in php */
 package main
 import (
-        "fmt"
+        //"fmt"
         "html/template"
         "net/http"
 )
@@ -21,11 +21,11 @@ func ProcessForm(w http.ResponseWriter, r *http.Request) {
                 http.Redirect(w, r, "/", http.StatusSeeOther)
                 return
         }
-        fmt.Println(r.FormValue("f"))
+        //fmt.Println(r.FormValue("table"))
 }
 
 func main() {
         http.HandleFunc("/", Index)
         http.HandleFunc("/processform", ProcessForm)
-        http.ListenAndServe(":8000", nil)
+        http.ListenAndServe(":9090", http.FileServer(http.Dir("./")))
 }
