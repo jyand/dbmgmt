@@ -1,23 +1,24 @@
 import * as d from './doc.js' ;
+import {initInsertForm} from './htm.js' ;
 
 var m: HTMLElement = d.Id("main") ;
 var ins: HTMLElement = d.Id("insert") ;
 
 function FixInput(): void {
-        let n: number = document.forms["inputs"]["numinputs"].value ;
+        let n: number = document.forms["container"]["numinputs"].value ;
         if (n < 1) {
                 n = 1 ;
-                document.forms["inputs"]["numinputs"].value = n ;
+                document.forms["container"]["numinputs"].value = n ;
         }
 }
 
 function IncrementInput(): void {
-        document.getElementById("field").innerHTML = "" ;
-        document.getElementById("value").innerHTML = "" ;
-        let n: number = document.forms["inputs"]["numinputs"].value ;
+        d.Id("field").innerHTML = "" ;
+        d.Id("value").innerHTML = "" ;
+        let n: number = document.forms["container"]["numinputs"].value ;
         for (let i: number = 0 ; i < n ; ++i) {
-                document.getElementById("field").innerHTML += `<label for="field${i}"><input type="text" id="field${i}" name="field${i}">` ;
-                document.getElementById("value").innerHTML += `<label for="value${i}"><input type="text" id="value${i}" name="value${i}">` ;
+                d.Id("field").innerHTML += `<label for="field${i}"><input type="text" id="field${i}" name="field${i}">` ;
+                d.Id("value").innerHTML += `<label for="value${i}"><input type="text" id="value${i}" name="value${i}">` ;
         }
 }
 
@@ -49,32 +50,30 @@ function StringFromInput(id: string): string {
 
 function Main(e): void {
         for (let i: number = 0 ; i < 3 ; ++i) {
-                document.getElementById(`top${i}`).textContent = "" ;
+                d.Id(`top${i}`).textContent = "" ;
         }
-        m.innerHTML = '<form id="table" action="/processform" method="POST"><label for="tableName"><p>Table:</p><input type="text" id="tableName" name="tableName"></form></br>' ;
-        m.innerHTML += '<p>Fields:</p><form id="field" action="/processform" method="POST"><label for="field0"><input type="text" id="field0" name="field0"></form></br>' ;
-        m.innerHTML += '<p>Values:</p><form id="value" action="/processform" method="POST"><label for="value0"><input type="text" id="value0" name="value0"></form></br>' ;
-        m.innerHTML += '<p>Inputs:</p><form id="inputs" action="/processform" method="POST"><label for="numinputs"><input type="number" id="numinputs" name="numinputs" value="1"></form></br>' ;
-        document.getElementById("table").addEventListener("keyup", function(): void {
-                let s: string = document.forms["table"]["tableName"].value ;
-                document.getElementById("top0").textContent = `INSERT INTO ${s}` ;
+        m.innerHTML = initInsertForm ;
+        //d.Id("table").addEventListener("keyup", function(): void {
+        d.Listen("table", "keyup", function(): void {
+                let s: string = document.forms["container"]["tableName"].value ;
+                d.Id("top0").textContent = `INSERT INTO ${s}` ;
         }) ;
-        document.getElementById("field").addEventListener("keyup", function(): void {
-                document.getElementById("top1").textContent = StringFromInput("field") ;
+        d.Id("field").addEventListener("keyup", function(): void {
+                d.Id("top1").textContent = StringFromInput("container") ;
         }) ;
-        document.getElementById("value").addEventListener("keyup", function(): void {
-                document.getElementById("top2").textContent = StringFromInput("value") ;
+        d.Id("value").addEventListener("keyup", function(): void {
+                d.Id("top2").textContent = StringFromInput("container") ;
         }) ;
-        document.getElementById("inputs").addEventListener("keyup", function(): void {
+        d.Id("inputs").addEventListener("keyup", function(): void {
                 FixInput() ;
         }) ;
-        document.getElementById("inputs").addEventListener("click", function(): void {
+        d.Id("inputs").addEventListener("click", function(): void {
                 FixInput() ;
         }) ;
-        document.getElementById("inputs").addEventListener("keyup", function(): void {
+        d.Id("inputs").addEventListener("keyup", function(): void {
                 IncrementInput() ;
         }) ;
-        document.getElementById("inputs").addEventListener("click", function(): void {
+        d.Id("inputs").addEventListener("click", function(): void {
                 IncrementInput() ;
         }) ;
 }
