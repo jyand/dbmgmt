@@ -5,7 +5,7 @@ var sel: HTMLElement = d.Id("select") ;
 var m: HTMLElement = d.Id("main") ;
 
 function StringFromCriteria(): string {
-        var crt = document.forms["container"] ;
+        var crt = document.forms["criteria"] ;
         var op = crt["ops"].value ;
         var cnd = crt["condition0"].value ;
         let s: string = `WHERE ${crt["criteria0"].value}` ;
@@ -27,7 +27,7 @@ function Main(e): void {
         d.Id("top0").textContent = `SELECT *` ;
         d.Listen("tbl", "keyup", function(): void {
         //d.Id("tbl").addEventListener("keyup", function(): void {
-                let s: string = document.forms["container"]["tblName"].value ;
+                let s: string = document.forms["tbl"]["tblName"].value ;
                 d.Id("top1").textContent = `FROM ${s}` ;
         }) ;
         d.Id("criteria").addEventListener("keyup", function(): void {

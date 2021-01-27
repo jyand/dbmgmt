@@ -5,17 +5,17 @@ var m: HTMLElement = d.Id("main") ;
 var ins: HTMLElement = d.Id("insert") ;
 
 function FixInput(): void {
-        let n: number = document.forms["container"]["numinputs"].value ;
+        let n: number = document.forms["inputs"]["numinputs"].value ;
         if (n < 1) {
                 n = 1 ;
-                document.forms["container"]["numinputs"].value = n ;
+                document.forms["inputs"]["numinputs"].value = n ;
         }
 }
 
 function IncrementInput(): void {
         d.Id("field").innerHTML = "" ;
         d.Id("value").innerHTML = "" ;
-        let n: number = document.forms["container"]["numinputs"].value ;
+        let n: number = document.forms["inputs"]["numinputs"].value ;
         for (let i: number = 0 ; i < n ; ++i) {
                 d.Id("field").innerHTML += `<label for="field${i}"><input type="text" id="field${i}" name="field${i}">` ;
                 d.Id("value").innerHTML += `<label for="value${i}"><input type="text" id="value${i}" name="value${i}">` ;
@@ -55,14 +55,14 @@ function Main(e): void {
         m.innerHTML = initInsertForm ;
         //d.Id("table").addEventListener("keyup", function(): void {
         d.Listen("table", "keyup", function(): void {
-                let s: string = document.forms["container"]["tableName"].value ;
+                let s: string = document.forms["table"]["tableName"].value ;
                 d.Id("top0").textContent = `INSERT INTO ${s}` ;
         }) ;
         d.Id("field").addEventListener("keyup", function(): void {
-                d.Id("top1").textContent = StringFromInput("container") ;
+                d.Id("top1").textContent = StringFromInput("field") ;
         }) ;
         d.Id("value").addEventListener("keyup", function(): void {
-                d.Id("top2").textContent = StringFromInput("container") ;
+                d.Id("top2").textContent = StringFromInput("value") ;
         }) ;
         d.Id("inputs").addEventListener("keyup", function(): void {
                 FixInput() ;
